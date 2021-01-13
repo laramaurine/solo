@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   container: {
@@ -20,6 +21,12 @@ const styles = theme => ({
   },
   menu: {
     width: 200,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
   },
 });
 
@@ -62,7 +69,18 @@ class LoginForm extends Component {
           </h3>
         )}
         <div>
-          <label htmlFor="username">
+        <TextField
+          required
+          id="standard-name"
+          label="Username"
+          className={classes.textField}
+          value={this.state.username}
+          onChange={this.handleInputChangeFor('username')}
+          margin="normal"
+        />
+         
+        </div>
+        {/* <label htmlFor="username">
             Username:
             <input
               type="text"
@@ -71,10 +89,18 @@ class LoginForm extends Component {
               value={this.state.username}
               onChange={this.handleInputChangeFor('username')}
             />
-          </label>
-        </div>
+          </label> */}
         <div>
-          <label htmlFor="password">
+        <TextField
+          required
+          id="standard-name"
+          label="Password"
+          className={classes.textField}
+          value={this.state.password}
+          onChange={this.handleInputChangeFor('password')}
+          margin="normal"
+        />
+          {/* <label htmlFor="password">
             Password:
             <input
               type="password"
@@ -83,14 +109,17 @@ class LoginForm extends Component {
               value={this.state.password}
               onChange={this.handleInputChangeFor('password')}
             />
-          </label>
+          </label> */}
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Log In" />
+        <Button variant="contained" type="submit" className={classes.button}>
+        Login
+      </Button>
+          {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
         </div>
       </form>
     );
   }
 }
 
-export default connect(mapStoreToProps)(LoginForm);
+export default withStyles(styles)(connect(mapStoreToProps)(LoginForm));

@@ -8,7 +8,9 @@ import React from 'react';
 const AboutPage = () => (
   <div className="container">
     <div>
-      <p>This about page is for anyone to read!</p>
+      <h1>it puts the lotion on it's skin</h1>
+        <h4>What is it?</h4>
+      <p>This app is </p>
     </div>
   </div>
 );

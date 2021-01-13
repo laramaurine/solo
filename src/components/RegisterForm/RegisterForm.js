@@ -1,6 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { withStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
 
 class RegisterForm extends Component {
   state = {
@@ -27,6 +55,7 @@ class RegisterForm extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <form className="formPanel" onSubmit={this.registerUser}>
         <h2>Register User</h2>
@@ -36,7 +65,16 @@ class RegisterForm extends Component {
           </h3>
         )}
         <div>
-          <label htmlFor="username">
+        <TextField
+          required
+          id="standard-name"
+          label="Username"
+          className={classes.textField}
+          value={this.state.username}
+          onChange={this.handleInputChangeFor('username')}
+          margin="normal"
+        />
+          {/* <label htmlFor="username">
             Username:
             <input
               type="text"
@@ -45,10 +83,19 @@ class RegisterForm extends Component {
               required
               onChange={this.handleInputChangeFor('username')}
             />
-          </label>
+          </label> */}
         </div>
         <div>
-          <label htmlFor="password">
+        <TextField
+          required
+          id="standard-name"
+          label="Password"
+          className={classes.textField}
+          value={this.state.password}
+          onChange={this.handleInputChangeFor('password')}
+          margin="normal"
+        />
+          {/* <label htmlFor="password">
             Password:
             <input
               type="password"
@@ -57,14 +104,20 @@ class RegisterForm extends Component {
               required
               onChange={this.handleInputChangeFor('password')}
             />
-          </label>
+          </label> */}
         </div>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+        <Button 
+          variant="contained" 
+          type="submit" 
+          className={classes.button}>
+          Register
+      </Button>
+          {/* <input className="btn" type="submit" name="submit" value="Register" /> */}
         </div>
       </form>
     );
   }
 }
-
-export default connect(mapStoreToProps)(RegisterForm);
+export default withStyles(styles)(connect(mapStoreToProps)(RegisterForm));
+//export default connect(mapStoreToProps)(RegisterForm);
