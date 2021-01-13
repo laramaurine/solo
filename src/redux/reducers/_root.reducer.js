@@ -8,9 +8,12 @@ import user from './user.reducer';
 
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
+
+//any new reducer import it and bring it into the root reducer
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
 });
+//this.props.store.errors.loginMesage --multiple reducers in the same file
 
 export default rootReducer;

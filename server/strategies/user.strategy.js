@@ -3,6 +3,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 
+//this takes care of passport should not need to be updated unless you call username 
+//anything other than username
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });

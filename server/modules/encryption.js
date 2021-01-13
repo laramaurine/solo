@@ -1,4 +1,4 @@
-// No changes should be required in this file
+// No changes should be required in this file - salting and hashing
 
 const bcrypt = require('bcryptjs');
 
