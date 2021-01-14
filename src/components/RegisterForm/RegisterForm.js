@@ -120,4 +120,4 @@ class RegisterForm extends Component {
   }
 }
 export default withStyles(styles)(connect(mapStoreToProps)(RegisterForm));
-//export default connect(mapStoreToProps)(RegisterForm);
+

@@ -34,3 +34,19 @@ CREATE TABLE "user_profile" (
 	"product_name" VARCHAR (80) 
 	
 );
+INSERT INTO "purpose" ("purpose")
+VALUES 
+('Serum'),
+('Moisturizer'),
+('Sunscreen'),
+('Cleanser'),
+('Exfoliator'),
+('Spot Treatment'),
+('Oil');
+
+INSERT INTO user_profile (user_id, purpose_id, frequency, review, in_use, description, product_name)
+VALUES(
+1, 3, 'twice a day', 'great sunscreen little white cast left to skin no irritation', true, 'spf 80 waterproof sunscreen', 'Neutrogena'
+)
+
+SELECT * FROM user_profile WHERE in_use = true;

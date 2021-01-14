@@ -80,16 +80,7 @@ class LoginForm extends Component {
         />
          
         </div>
-        {/* <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              required
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label> */}
+
         <div>
         <TextField
           required
@@ -100,22 +91,15 @@ class LoginForm extends Component {
           onChange={this.handleInputChangeFor('password')}
           margin="normal"
         />
-          {/* <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              name="password"
-              required
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label> */}
+
         </div>
         <div>
-        <Button variant="contained" type="submit" className={classes.button}>
-        Login
+        <Button variant="contained" 
+          type="submit" 
+          className={classes.button}>
+          Login
       </Button>
-          {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
+         
         </div>
       </form>
     );
