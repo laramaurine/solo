@@ -6,22 +6,24 @@ import { withRouter } from "react-router";
 
 class AddProduct extends Component {
    state = {
+
        newProduct: {
-       frequency: '',
-       review: '',
-       in_use: '',
-       img_url:'',
-       description: '',
-       product_name: '',
+            user_id: '',
+            frequency: '',
+            review: '',
+            in_use: '',
+            img_url:'',
+            description: '',
+            product_name: '',
        }
    }
 
    componentDidMount(){
-       console.log('in componenet did mount');
-       //eventually change to map genre categories instead of hard coding
+       console.log('in componenet did mount', this.props.reduxState.user.id);
+       this.setState({newProduct:{...this.state.newProduct, user_id: this.props.reduxState.user.id}})
    }
    handleNewProduct = (event, propertyName) => {
-  
+    
     this.setState({
         newProduct: {
             ...this.state.newProduct,
@@ -32,9 +34,11 @@ class AddProduct extends Component {
 }
 
    addNewProduct = event => {
+       console.log('hi i am working addproduct jsx like 35', this.state.newProduct);
        event.preventDefault();
        this.props.dispatch({type: 'ADD_PRODUCT', payload: this.state.newProduct})
-       this.props.history.push('/')
+       
+       //this.props.history.push('/')
     }
 
    handleClick = () => {
@@ -52,7 +56,7 @@ class AddProduct extends Component {
             <form onSubmit={this.addNewProduct}>
             <input required placeholder="Frequency of Use"  value={this.state.newProduct.frequency} onChange={(event) => this.handleNewProduct (event, 'frequency')} />
             <input required placeholder="Product Review"  value={this.state.newProduct.review} onChange={(event) =>this.handleNewProduct (event, 'review')} />
-            <input required placeholder="Currently Using?"  value={this.state.newProduct.in_use} onChange={(event) =>this.handleNewProduct (event, 'in_use')} />
+            <input required placeholder="Currently Using? True or False"  value={this.state.newProduct.in_use} onChange={(event) =>this.handleNewProduct (event, 'in_use')} />
             <input required placeholder="Image"  value={this.state.newProduct.img_url} onChange={(event) => this.handleNewProduct (event, 'img_url')} />
             <input required placeholder="Description"  value={this.state.newProduct.description} onChange={(event) =>this.handleNewProduct (event, 'description')} />
             <input required placeholder="Product Name"  value={this.state.newProduct.product_name} onChange={(event) =>this.handleNewProduct (event, 'product_name')} />
@@ -76,8 +80,8 @@ class AddProduct extends Component {
     }
 }
 
-const mapStateToProps = (reduxState) => ({
+const mapStoreToProps = (reduxState) => ({
     reduxState,
   });
 
-export default connect(mapStateToProps)(AddProduct);
+export default connect(mapStoreToProps)(AddProduct);
