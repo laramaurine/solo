@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import { withRouter } from "react-router";
+//import { withRouter } from "react-router";
 
 
 class AddProduct extends Component {
@@ -42,8 +42,8 @@ class AddProduct extends Component {
     }
 
    handleClick = () => {
-       //console.log('cancel clicked');
-       this.props.history.push('/')
+       console.log('cancel clicked');
+       //this.props.history.push('/')
    }
     render(){
       
@@ -71,8 +71,8 @@ class AddProduct extends Component {
                   <option value="7">Facial Oil</option>
                   
               </select>
-            <input class="submit" type='submit' value='Add New Product' />
-            <button class="cancelButton" onClick={this.handleClick}>Cancel</button>
+            <input className="submit" type='submit' value='Add New Product' />
+            <button className="cancelButton" onClick={this.handleClick}>Cancel</button>
             
         </form>
         </div>

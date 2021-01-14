@@ -22,5 +22,5 @@ const detailReducer = (state = [], action) => {
 
 export default combineReducers({
     //detailReducer,
-    //productReducer,
+    productReducer,
   });

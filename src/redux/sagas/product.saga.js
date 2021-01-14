@@ -29,14 +29,14 @@ function* addProduct(action){
 //         console.log('Error in saga GET index js', error)
 //       }
 // }
-function* fetchDetail(action) {
-    try{
-        const response = yield axios.get(`/api/product/${action.payload}`)
-        yield put({ type: 'SET_DETAIL', payload: response.data})
-    }catch (error) {
-        console.log('Error in detail GET', error)
-      }
-}
+// function* fetchDetail(action) {
+//     try{
+//         const response = yield axios.get(`/api/product/${action.payload}`)
+//         yield put({ type: 'SET_DETAIL', payload: response.data})
+//     }catch (error) {
+//         console.log('Error in detail GET', error)
+//       }
+// }
 
 
 // Create sagaMiddleware
