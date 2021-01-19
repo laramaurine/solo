@@ -12,7 +12,16 @@ class UserPage extends Component {
     
   }
 
-  handleDelete
+  handleDelete = (event, id) => {
+    console.log('delete clicked')
+   
+    this.props.dispatch({ type: 'DELETE_PRODUCT', payload: id })
+}
+
+handleEdit = (event, id) => {
+  console.log('edit clicked');
+}
+
   // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     return (

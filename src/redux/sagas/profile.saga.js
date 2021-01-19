@@ -26,6 +26,13 @@ function* fetchDetail(action) {
       }
 }
 
-
+function* deleteProduct(action) {
+    try {
+      yield axios.delete(`/api/product/${action.payload}`)
+      yield put({ type: 'SET_DETAIL' })
+    } catch (error) {
+      console.log('Error in deleteProduct profile saga', error)
+    }
+  }
 
 export default profileSaga;

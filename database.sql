@@ -50,3 +50,6 @@ VALUES(
 )
 
 SELECT * FROM user_profile WHERE in_use = true;
+
+DELETE from user_profile WHERE user_id = 1 AND id = 1;
+
