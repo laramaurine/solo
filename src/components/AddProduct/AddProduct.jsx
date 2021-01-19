@@ -36,8 +36,7 @@ class AddProduct extends Component {
    addNewProduct = event => {
        console.log('hi i am working addproduct jsx like 35', this.state.newProduct);
        event.preventDefault();
-       this.props.dispatch({type: 'ADD_PRODUCT', payload: this.state.newProduct})
-       
+       this.props.dispatch({type: 'ADD_PRODUCT', payload: {newProduct: this.state.newProduct, user_id: this.props.reduxState.user.id}})
        //this.props.history.push('/')
     }
 
@@ -57,7 +56,7 @@ class AddProduct extends Component {
             <input required placeholder="Frequency of Use"  value={this.state.newProduct.frequency} onChange={(event) => this.handleNewProduct (event, 'frequency')} />
             <input required placeholder="Product Review"  value={this.state.newProduct.review} onChange={(event) =>this.handleNewProduct (event, 'review')} />
             <input required placeholder="Currently Using? True or False"  value={this.state.newProduct.in_use} onChange={(event) =>this.handleNewProduct (event, 'in_use')} />
-            <input required placeholder="Image"  value={this.state.newProduct.img_url} onChange={(event) => this.handleNewProduct (event, 'img_url')} />
+            <input placeholder="Image"  value={this.state.newProduct.img_url} onChange={(event) => this.handleNewProduct (event, 'img_url')} />
             <input required placeholder="Description"  value={this.state.newProduct.description} onChange={(event) =>this.handleNewProduct (event, 'description')} />
             <input required placeholder="Product Name"  value={this.state.newProduct.product_name} onChange={(event) =>this.handleNewProduct (event, 'product_name')} />
             <select value={this.state.product_id} onChange={(event) => this.handleNewProduct (event, 'product_id')}>

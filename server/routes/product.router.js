@@ -5,17 +5,17 @@ const router = express.Router();
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "user_profile" ORDER BY "id" ASC;`;
-    pool.query(queryText)
-      .then( ( result ) => {
-        res.send(result.rows);
-      })
-    .catch( (error) => {
-      res.sendStatus(500)
-      console.log('error in productRouter.get', error);
-    })
-});
+// router.get('/', (req, res) => {
+//     const queryText = `SELECT * FROM "user_profile" ORDER BY "id" ASC;`;
+//     pool.query(queryText)
+//       .then( ( result ) => {
+//         res.send(result.rows);
+//       })
+//     .catch( (error) => {
+//       res.sendStatus(500)
+//       console.log('error in productRouter.get', error);
+//     })
+// });
 
 /**
  * POST route template

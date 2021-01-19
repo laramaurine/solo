@@ -9,7 +9,10 @@ class UserPage extends Component {
 
   componentDidMount(){
     this.props.dispatch({type: 'SET_DETAIL', payload: this.props.store.user.id })
+    
   }
+
+  handleDelete
   // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     return (
@@ -29,8 +32,8 @@ class UserPage extends Component {
                 <img src={user_profile.img_url} alt={user_profile.description}/>
                 <div>{user_profile.product_name}</div>
                 {/* <button onClick={this.likePic(this.props.pic.id)}>Like</button> */}
-                <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={this.handleEdit}>Edit</button>
+                <button onClick={this.handleDelete}>Delete</button>
                 <div></div>
               {/* {JSON.stringify(this.props.reduxState.user_profile.id)} */}
              </div>
