@@ -10,7 +10,8 @@ const AboutPage = () => (
     <div>
       <h1>it puts the lotion on it's skin</h1>
         <h4>What is it?</h4>
-      <p>This app is </p>
+      <p>This app is a skin care product tracking app</p>
+      <p>It will track how often you put lotion on your skin</p>
     </div>
   </div>
 );

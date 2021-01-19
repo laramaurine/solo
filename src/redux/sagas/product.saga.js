@@ -20,15 +20,15 @@ function* addProduct(action){
         console.log('error in addProduct', error);
     }
 }
-// function* fetchProduct() {
-//     try{
-//         const response = yield axios.get('/api/product')
-//         yield put({ type: 'SET_PRODUCT', payload: response.data})
-//         console.log('line 25 add.product.js', response);
-//     }catch (error) {
-//         console.log('Error in saga GET index js', error)
-//       }
-// }
+function* fetchProduct() {
+    try{
+        const response = yield axios.get('/api/product')
+        yield put({ type: 'SET_PRODUCT', payload: response.data})
+        console.log('line 25 add.product.js', response);
+    }catch (error) {
+        console.log('Error in saga GET index js', error)
+      }
+}
 // function* fetchDetail(action) {
 //     try{
 //         const response = yield axios.get(`/api/product/${action.payload}`)
