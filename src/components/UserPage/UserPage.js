@@ -6,6 +6,10 @@ import AddProduct from '../AddProduct/AddProduct.jsx';
 
 
 class UserPage extends Component {
+
+  componentDidMount(){
+    this.props.dispatch({type: 'SET_DETAIL', payload: this.props.store.user.id })
+  }
   // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     return (
@@ -15,7 +19,23 @@ class UserPage extends Component {
         <p>this is userPage...all things will display here map function currently in progress</p>
         <p>along with edit and delete buttons products will toggleable between in use and not in use</p>
         <div>
-             
+          {/* {JSON.stringify(this.props.store.profile)} */}
+        {this.props.store.profile.map((user_profile) =>
+             <div key={user_profile.id}>
+                <div>{user_profile.purpose_id}</div>
+                <div>{user_profile.frequency}</div>
+                <div>{user_profile.review}</div> 
+                <div>{user_profile.in_use}</div>
+                <img src={user_profile.img_url} alt={user_profile.description}/>
+                <div>{user_profile.product_name}</div>
+                {/* <button onClick={this.likePic(this.props.pic.id)}>Like</button> */}
+                <button>Edit</button>
+                <button>Delete</button>
+                <div></div>
+              {/* {JSON.stringify(this.props.reduxState.user_profile.id)} */}
+             </div>
+             )}
+
         
        </div>
         <AddProduct />
