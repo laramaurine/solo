@@ -4,6 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* profileSaga(){
     yield takeLatest('SET_DETAIL', fetchDetail)
     yield takeLatest('ADD_PRODUCT', addProduct);
+    yield takeLatest('DELETE_PRODUCT', deleteProduct)
 }
 function* addProduct(action){
     console.log('in the add product saga product.saga.js like 13', action.payload);
@@ -28,7 +29,7 @@ function* fetchDetail(action) {
 
 function* deleteProduct(action) {
     try {
-      yield axios.delete(`/api/product/${action.payload}`)
+      yield axios.delete(`/api/profile/${action.payload}`)
       yield put({ type: 'SET_DETAIL' })
     } catch (error) {
       console.log('Error in deleteProduct profile saga', error)

@@ -42,7 +42,7 @@ handleEdit = (event, id) => {
                 <div>{user_profile.product_name}</div>
                 {/* <button onClick={this.likePic(this.props.pic.id)}>Like</button> */}
                 <button onClick={this.handleEdit}>Edit</button>
-                <button onClick={this.handleDelete}>Delete</button>
+                <button onClick={(event) =>this.handleDelete(event, user_profile.id)}>Delete</button>
                 <div></div>
               {/* {JSON.stringify(this.props.reduxState.user_profile.id)} */}
              </div>

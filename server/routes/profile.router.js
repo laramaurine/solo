@@ -44,5 +44,15 @@ router.get('/:id', (req, res) => {
       })
   });
   
+  router.delete('/:id', (req, res) => {
+    const queryText = 'DELETE from user_profile WHERE user_id = $1 AND id = $1;';
+    pool.query(queryText, [req.params.id])
+      .then(() => { res.sendStatus(200); })
+      .catch((error) => {
+        console.log('error in profile router delete', error);
+        res.sendStatus(500);
+      });
+  });
+
   module.exports = router;
   
