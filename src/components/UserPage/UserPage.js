@@ -8,18 +8,31 @@ import AddProduct from '../AddProduct/AddProduct.jsx';
 class UserPage extends Component {
 
   componentDidMount(){
-    this.props.dispatch({type: 'SET_DETAIL', payload: this.props.store.user.id })
+    this.props.dispatch({type: 'FETCH_DETAIL', payload: this.props.store.user.id })
     
   }
 
+  // state = {
+  //   editProduct: {
+  //     id: this.props.id,
+  //     purpose_id: this.props.purpose_id,
+  //     frequency: this.props.frequency,
+  //     review: this.props.review,
+  //     in_use: this.props.in_use,
+  //     description: this.props.description,
+      
+  //   }
+  // }
+
   handleDelete = (event, id) => {
-    console.log('delete clicked')
+    console.log('delete clicked', id)
    
     this.props.dispatch({ type: 'DELETE_PRODUCT', payload: id })
 }
 
 handleEdit = (event, id) => {
   console.log('edit clicked');
+  this.props.dispatch({ type: 'UPDATE_PRODUCT', payload: this.state.editProduct})
 }
 
   // this component doesn't do much to start, just renders some user info to the DOM
@@ -31,7 +44,7 @@ handleEdit = (event, id) => {
         <p>this is userPage...all things will display here map function currently in progress</p>
         <p>along with edit and delete buttons products will toggleable between in use and not in use</p>
         <div>
-          {/* {JSON.stringify(this.props.store.profile)} */}
+         {/* {JSON.stringify(this.props.store.profile)} */}
         {this.props.store.profile.map((user_profile) =>
              <div key={user_profile.id}>
                 <div>{user_profile.purpose_id}</div>

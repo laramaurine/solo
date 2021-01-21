@@ -5,7 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 // Create the rootSaga generator function
 function* productSaga() {
    yield takeLatest('ADD_PRODUCT', addProduct);
-   //yield takeEvery('FETCH_PRODUCT', fetchProduct)
+   yield takeEvery('FETCH_PRODUCT', fetchProduct)
    //yield takeLatest('FETCH_DETAIL', fetchDetail)
 }
 

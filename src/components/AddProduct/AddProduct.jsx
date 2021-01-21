@@ -37,6 +37,7 @@ class AddProduct extends Component {
        console.log('hi i am working addproduct jsx like 35', this.state.newProduct);
        event.preventDefault();
        this.props.dispatch({type: 'ADD_PRODUCT', payload: {newProduct: this.state.newProduct, user_id: this.props.reduxState.user.id}})
+       //this.props.dispatch({type: 'ADD_PRODUCT', payload: {newProduct: this.state.newProduct, user_id: this.props.reduxState.user.id}}})
        //this.props.history.push('/')
     }
 

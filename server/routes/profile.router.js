@@ -3,11 +3,12 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
-router.get('/:id', (req, res) => {
+router.get('/', (req, res) => {
     let user_id = req.params.id;
     const queryText = `SELECT * from user_profile WHERE user_id = $1`;
-    pool.query(queryText, [user_id])
+    pool.query(queryText, [req.user.id])
       .then( ( result ) => {
+        console.log(result.rows);
         res.send(result.rows);
       })
     .catch( (error) => {
@@ -45,7 +46,7 @@ router.get('/:id', (req, res) => {
   });
   
   router.delete('/:id', (req, res) => {
-    const queryText = 'DELETE from user_profile WHERE user_id = $1 AND id = $1;';
+    const queryText = 'DELETE from user_profile WHERE id = $1;';
     pool.query(queryText, [req.params.id])
       .then(() => { res.sendStatus(200); })
       .catch((error) => {
@@ -53,6 +54,22 @@ router.get('/:id', (req, res) => {
         res.sendStatus(500);
       });
   });
-
+  // router.put('/:id', (req, res) => {
+  //   let id = req.params.id
+  //   let purpose = req.params.purpose_id
+  //   let frequency = req.params.frequency
+  //   let review = req.params.review
+  //   let in_use = req.params.im_use
+  //   let img_url = req.params.img_url
+  //   let description = req.body.description
+  //   let product_name = req.params.product_name
+  //   const queryText = ''
+  //   pool.query(queryText, [title, description, id])
+  //     .then(() => { res.sendStatus(201) })
+  //     .catch(error => {
+  //       console.log('Error in PUT profile router', error)
+  //     })
+  // })
+  
   module.exports = router;
   

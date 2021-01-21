@@ -14,13 +14,17 @@ const productReducer = (state = [], action) => {
 const detailReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_DETAIL':
-            return action.payload;
+            return action.payload
+            
+            ;
         default:
             return state;
     }
 }
 
 export default combineReducers({
-    detailReducer,
     productReducer,
+    detailReducer,
+    
+
   });
