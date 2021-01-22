@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import mapStoreToProps from '../../redux/mapStoreToProps';
 //import { withRouter } from "react-router";
 
 
@@ -15,13 +16,31 @@ class AddProduct extends Component {
             img_url:'',
             description: '',
             product_name: '',
-       }
+       },
+
+       editProduct: false,
+
    }
 
    componentDidMount(){
-       console.log('in componenet did mount', this.props.reduxState.user.id);
-       this.setState({newProduct:{...this.state.newProduct, user_id: this.props.reduxState.user.id}})
+       console.log('in componenet did mount', this.props.store.user.id);
+       this.setState({newProduct:{...this.state.newProduct, user_id: this.props.store.user.id}})
    }
+
+   componentDidUpdate(prevProps){
+        if(this.props.store.product.frequency !== prevProps.frequency && this.state.frequency === null){
+            this.setState({newProduct: {
+                user_id: this.props.store.user_id,
+                frequency: this.props.store.updateReducer.frequency,
+                review: this.props.store.updateReducer.review,
+                in_use: this.props.store.updateReducer.in_use,
+                img_url:this.props.store.updateReducer.img_url,
+                description: this.props.store.updateReducer.description,
+                product_name: this.props.store.updateReducer.product_name,
+           }})
+        }
+   }
+
    handleNewProduct = (event, propertyName) => {
     
     this.setState({
@@ -34,17 +53,29 @@ class AddProduct extends Component {
 }
 
    addNewProduct = event => {
-       console.log('hi i am working addproduct jsx like 35', this.state.newProduct);
+       console.log('hi i am working addproduct jsx line 55', this.state.newProduct);
        event.preventDefault();
-       this.props.dispatch({type: 'ADD_PRODUCT', payload: {newProduct: this.state.newProduct, user_id: this.props.reduxState.user.id}})
-       //this.props.dispatch({type: 'ADD_PRODUCT', payload: {newProduct: this.state.newProduct, user_id: this.props.reduxState.user.id}}})
+       if(this.editProduct){
+           this.props.dispatch({type: 'UPDATE_PRODUCT', payload: this.props.store.user_id.id})
+       }else{
+           this.props.dispatch({type: 'ADD_PRODUCT', payload: {newProduct: this.state.newProduct, user_id: this.props.store.user.id}})
+       }
+       
+       //this.props.dispatch({type: 'ADD_PRODUCT', payload: {newProduct: this.state.newProduct, user_id: this.props.store.user.id}}})
        //this.props.history.push('/')
     }
 
    handleClick = () => {
        console.log('cancel clicked');
-       //this.props.history.push('/')
+      this.state({ editProduct: false })
    }
+
+   handleEdit = (event, id) => {
+    console.log('edit clicked');
+    //this.props.history.push(`/edit/${id}`);
+    this.setState({ editProduct: true })
+    this.props.dispatch({ type: 'EDIT_PRODUCT_MONEY', payload: id})
+  }
     render(){
       
         return(
@@ -72,6 +103,7 @@ class AddProduct extends Component {
                   
               </select>
             <input className="submit" type='submit' value='Add New Product' />
+            <button onClick={(event) => this.handleEdit(event, this.props.store.user.id)}>Edit</button>
             <button className="cancelButton" onClick={this.handleClick}>Cancel</button>
             
         </form>
@@ -80,8 +112,8 @@ class AddProduct extends Component {
     }
 }
 
-const mapStoreToProps = (reduxState) => ({
-    reduxState,
-  });
+// const mapStoreToProps = (store) => ({
+//     store,
+//   });
 
 export default connect(mapStoreToProps)(AddProduct);

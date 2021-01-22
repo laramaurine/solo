@@ -17,6 +17,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   profile,
   product,
+ 
 });
 //this.props.store.errors.loginMesage --multiple reducers in the same file
 

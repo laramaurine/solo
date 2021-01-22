@@ -5,6 +5,8 @@ function* profileSaga(){
     yield takeLatest('FETCH_DETAIL', fetchDetail)
     yield takeLatest('ADD_PRODUCT', addProduct);
     yield takeLatest('DELETE_PRODUCT', deleteProduct);
+    yield takeLatest('UPDATE_PRODUCT', updateProduct);
+    yield takeLatest('EDIT_PRODUCT_MONEY', changeOneThing)
 }
 function* addProduct(action){
     console.log('in the add product saga product.saga.js like 13', action.payload);
@@ -39,10 +41,20 @@ function* deleteProduct(action) {
     }
   }
 
-  function* editProduct(action) {
+  function* updateProduct(action) {
     try {
-        console.log('action.payload editT', action.payload)
+        console.log('action.payload edit', action.payload)
         yield axios.put(`/api/product/${action.payload.id}`, action.payload)
+    } catch (error) {
+        console.log('Error in editProduct', error)
+    }
+}
+
+function* changeOneThing(action) {
+    try {
+        console.log('action.payload edit', action.payload)
+        const results = yield axios.get(`/api/profile/${action.payload}`)
+        yield put({type: 'SET_UPDATE_PRODUCT', payload: results.data});
     } catch (error) {
         console.log('Error in editProduct', error)
     }

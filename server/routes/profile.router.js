@@ -54,22 +54,38 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
       });
   });
-  // router.put('/:id', (req, res) => {
-  //   let id = req.params.id
-  //   let purpose = req.params.purpose_id
-  //   let frequency = req.params.frequency
-  //   let review = req.params.review
-  //   let in_use = req.params.im_use
-  //   let img_url = req.params.img_url
-  //   let description = req.body.description
-  //   let product_name = req.params.product_name
-  //   const queryText = ''
-  //   pool.query(queryText, [title, description, id])
-  //     .then(() => { res.sendStatus(201) })
-  //     .catch(error => {
-  //       console.log('Error in PUT profile router', error)
-  //     })
-  // })
+  router.put(`/:id`, (req, res) => {
+    let id = req.params.id
+    let purpose = req.params.purpose_id
+    let frequency = req.params.frequency
+    let review = req.params.review
+    let in_use = req.params.im_use
+    let img_url = req.params.img_url
+    let description = req.body.description
+    let product_name = req.params.product_name
+    const queryText = `UPDATE user_profile SET purpose_id=$1, 
+                       frequency=$2, review=$3, in_use=$4, description=$5, 
+                       product_name=$6 WHERE user_id=$7 and id=$8;`
+    pool.query(queryText, [])
+      .then(() => { res.sendStatus(201) })
+      .catch(error => {
+        console.log('Error in PUT profile router', error)
+      })
+  });
+//GET ROUTE for update product GETS based on id
+  router.get('/:id', (req, res) => {
+    let user_id = req.params.id;
+    const queryText = `SELECT * from user_profile WHERE purpose_id = $1`;
+    pool.query(queryText, [user_id])
+      .then( ( result ) => {
+        console.log(result.rows);
+        res.send(result.rows);
+      })
+    .catch( (error) => {
+      res.sendStatus(500)
+      console.log('error in profileRouter.get', error);
+    })
+  });
   
   module.exports = router;
   

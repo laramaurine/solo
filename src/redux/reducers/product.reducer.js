@@ -14,9 +14,17 @@ const productReducer = (state = [], action) => {
 const detailReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_DETAIL':
-            return action.payload
-            
-            ;
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+//update reducer
+const updateReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_UPDATE_PRODUCT':
+            return action.payload;
         default:
             return state;
     }
@@ -25,6 +33,7 @@ const detailReducer = (state = [], action) => {
 export default combineReducers({
     productReducer,
     detailReducer,
+    updateReducer,
     
 
   });

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import AddProduct from '../AddProduct/AddProduct.jsx';
+import EditProduct from '../EditProduct/EditProduct.jsx';
 
 
 class UserPage extends Component {
@@ -12,17 +13,7 @@ class UserPage extends Component {
     
   }
 
-  // state = {
-  //   editProduct: {
-  //     id: this.props.id,
-  //     purpose_id: this.props.purpose_id,
-  //     frequency: this.props.frequency,
-  //     review: this.props.review,
-  //     in_use: this.props.in_use,
-  //     description: this.props.description,
-      
-  //   }
-  // }
+  
 
   handleDelete = (event, id) => {
     console.log('delete clicked', id)
@@ -30,10 +21,11 @@ class UserPage extends Component {
     this.props.dispatch({ type: 'DELETE_PRODUCT', payload: id })
 }
 
-handleEdit = (event, id) => {
-  console.log('edit clicked');
-  this.props.dispatch({ type: 'UPDATE_PRODUCT', payload: this.state.editProduct})
-}
+// handleEdit = (event, id) => {
+//   console.log('edit clicked');
+//   //this.props.history.push(`/edit/${id}`);
+//   this.props.dispatch({ type: 'EDIT_PRODUCT_MONEY', payload: id})
+// }
 
   // this component doesn't do much to start, just renders some user info to the DOM
   render() {
@@ -53,8 +45,7 @@ handleEdit = (event, id) => {
                 <div>{user_profile.in_use}</div>
                 <img src={user_profile.img_url} alt={user_profile.description}/>
                 <div>{user_profile.product_name}</div>
-                {/* <button onClick={this.likePic(this.props.pic.id)}>Like</button> */}
-                <button onClick={this.handleEdit}>Edit</button>
+                {/* <button onClick={(event) => this.handleEdit(event, user_profile.id)}>Edit</button> */}
                 <button onClick={(event) =>this.handleDelete(event, user_profile.id)}>Delete</button>
                 <div></div>
               {/* {JSON.stringify(this.props.reduxState.user_profile.id)} */}
