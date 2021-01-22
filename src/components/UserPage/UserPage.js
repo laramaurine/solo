@@ -15,11 +15,11 @@ class UserPage extends Component {
 
   
 
-  handleDelete = (event, id) => {
-    console.log('delete clicked', id)
+//   handleDelete = (event, id) => {
+//     console.log('delete clicked', id)
    
-    this.props.dispatch({ type: 'DELETE_PRODUCT', payload: id })
-}
+//     this.props.dispatch({ type: 'DELETE_PRODUCT', payload: id })
+// }
 
 // handleEdit = (event, id) => {
 //   console.log('edit clicked');
@@ -36,7 +36,7 @@ class UserPage extends Component {
         <p>this is userPage...all things will display here map function currently in progress</p>
         <p>along with edit and delete buttons products will toggleable between in use and not in use</p>
         <div>
-         {/* {JSON.stringify(this.props.store.profile)} */}
+         {/* {JSON.stringify(this.props.store.profile)}
         {this.props.store.profile.map((user_profile) =>
              <div key={user_profile.id}>
                 <div>{user_profile.purpose_id}</div>
@@ -45,12 +45,12 @@ class UserPage extends Component {
                 <div>{user_profile.in_use}</div>
                 <img src={user_profile.img_url} alt={user_profile.description}/>
                 <div>{user_profile.product_name}</div>
-                {/* <button onClick={(event) => this.handleEdit(event, user_profile.id)}>Edit</button> */}
+                <button onClick={(event) => this.handleEdit(event, user_profile.id)}>Edit</button>
                 <button onClick={(event) =>this.handleDelete(event, user_profile.id)}>Delete</button>
                 <div></div>
-              {/* {JSON.stringify(this.props.reduxState.user_profile.id)} */}
+              {JSON.stringify(this.props.reduxState.user_profile.id)}
              </div>
-             )}
+             )} */}
 
         
        </div>

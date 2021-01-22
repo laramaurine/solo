@@ -44,7 +44,7 @@ function* deleteProduct(action) {
   function* updateProduct(action) {
     try {
         console.log('action.payload edit', action.payload)
-        yield axios.put(`/api/product/${action.payload.id}`, action.payload)
+        yield axios.put(`/api/profile/id`, action.payload)
     } catch (error) {
         console.log('Error in editProduct', error)
     }
@@ -53,7 +53,7 @@ function* deleteProduct(action) {
 function* changeOneThing(action) {
     try {
         console.log('action.payload edit', action.payload)
-        const results = yield axios.get(`/api/profile/${action.payload}`)
+        const results = yield axios.get(`/api/profile/solo/${action.payload}`)
         yield put({type: 'SET_UPDATE_PRODUCT', payload: results.data});
     } catch (error) {
         console.log('Error in editProduct', error)

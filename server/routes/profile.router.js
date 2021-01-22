@@ -54,32 +54,34 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
       });
   });
-  router.put(`/:id`, (req, res) => {
-    let id = req.params.id
-    let purpose = req.params.purpose_id
-    let frequency = req.params.frequency
-    let review = req.params.review
-    let in_use = req.params.im_use
-    let img_url = req.params.img_url
+  router.put(`/id`, (req, res) => {
+    let user = req.body.user_id
+    let id = req.body.id
+    let purpose = req.body.purpose_id
+    let frequency = req.body.frequency
+    let review = req.body.review
+    let in_use = req.body.in_use
+    let img_url = req.body.img_url
     let description = req.body.description
-    let product_name = req.params.product_name
+    let product_name = req.body.product_name
     const queryText = `UPDATE user_profile SET purpose_id=$1, 
-                       frequency=$2, review=$3, in_use=$4, description=$5, 
-                       product_name=$6 WHERE user_id=$7 and id=$8;`
-    pool.query(queryText, [])
+                       frequency=$2, review=$3, in_use=$4, img_url=$5, description=$6, 
+                       product_name=$7 WHERE id=$8 and user=$9`
+    pool.query(queryText, [purpose, frequency, review, in_use, img_url, description, product_name, id, user])
       .then(() => { res.sendStatus(201) })
       .catch(error => {
         console.log('Error in PUT profile router', error)
       })
   });
 //GET ROUTE for update product GETS based on id
-  router.get('/:id', (req, res) => {
+  router.get('/solo/:id', (req, res) => {
     let user_id = req.params.id;
-    const queryText = `SELECT * from user_profile WHERE purpose_id = $1`;
+    console.log('hi in solo router line 78', user_id);
+    const queryText = `SELECT * from user_profile WHERE id = $1`;
     pool.query(queryText, [user_id])
       .then( ( result ) => {
-        console.log(result.rows);
-        res.send(result.rows);
+        console.log('line 82 router', result.rows[0]);
+        res.send(result.rows[0]);
       })
     .catch( (error) => {
       res.sendStatus(500)

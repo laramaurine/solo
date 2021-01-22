@@ -21,19 +21,19 @@ const detailReducer = (state = [], action) => {
 }
 
 //update reducer
-const updateReducer = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_UPDATE_PRODUCT':
-            return action.payload;
-        default:
-            return state;
-    }
-}
+// const updateReducer = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_UPDATE_PRODUCT':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
 
 export default combineReducers({
     productReducer,
     detailReducer,
-    updateReducer,
+    
     
 
   });
