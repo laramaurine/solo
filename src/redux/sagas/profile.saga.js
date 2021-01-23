@@ -7,6 +7,7 @@ function* profileSaga(){
     yield takeLatest('DELETE_PRODUCT', deleteProduct);
     yield takeLatest('UPDATE_PRODUCT', updateProduct);
     yield takeLatest('EDIT_PRODUCT_MONEY', changeOneThing)
+    yield takeLatest('UPDATE_STATUS', changeStatus)
 }
 function* addProduct(action){
     console.log('in the add product saga product.saga.js like 13', action.payload);
@@ -43,8 +44,16 @@ function* deleteProduct(action) {
 
   function* updateProduct(action) {
     try {
-        console.log('action.payload edit', action.payload)
-        yield axios.put(`/api/profile/id`, action.payload)
+        const config = {
+            headers: { 
+              'Content-Type': 'application/json',
+              'product': action.payload,
+             },
+            withCredentials: true,
+          };
+        console.log('firing after line 64 add product jsx action.payload edit', action.payload);
+        yield axios.put(`/api/profile/update`, config)
+        yield put({ type: 'FETCH_DETAIL' })
     } catch (error) {
         console.log('Error in editProduct', error)
     }
@@ -58,6 +67,16 @@ function* changeOneThing(action) {
     } catch (error) {
         console.log('Error in editProduct', error)
     }
+}
+
+function* changeStatus(action) {
+    try{
+        //const results = yield axios.put(`/api/profile/solo/${action.payload}`)
+        yield axios.put(`/api/update`, action.payload);
+        yield put({ type: 'FETCH_DETAIL', payload: action.payload.user_id})
+    }catch (error) {
+        console.log('Error in changeStatus', error)
+}
 }
 
 export default profileSaga;

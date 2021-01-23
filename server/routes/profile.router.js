@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
  
 
   router.post('/', (req, res) => {
-    console.log('hi i am in product router post line 24', req.body);
+    console.log('hi i am in product router post line 24');
     const queryText = `INSERT INTO user_profile (user_id, purpose_id, frequency, review, img_url, in_use, description, product_name)
     VALUES(
    $1, $2, $3, $4, $5, $6, $7, $8
@@ -54,25 +54,55 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
       });
   });
-  router.put(`/id`, (req, res) => {
-    let user = req.body.user_id
-    let id = req.body.id
-    let purpose = req.body.purpose_id
-    let frequency = req.body.frequency
-    let review = req.body.review
-    let in_use = req.body.in_use
-    let img_url = req.body.img_url
-    let description = req.body.description
-    let product_name = req.body.product_name
-    const queryText = `UPDATE user_profile SET purpose_id=$1, 
-                       frequency=$2, review=$3, in_use=$4, img_url=$5, description=$6, 
-                       product_name=$7 WHERE id=$8 and user=$9`
-    pool.query(queryText, [purpose, frequency, review, in_use, img_url, description, product_name, id, user])
-      .then(() => { res.sendStatus(201) })
-      .catch(error => {
-        console.log('Error in PUT profile router', error)
+  // router.put(`/update`, (req, res) => {
+  //   console.log('hi i am put router line 58 profile router');
+  //   console.log('line 59 hi hi hi', req.body.headers.product);
+  //   let user = req.body.headers.product.user_id
+  //   let id = req.body.headers.product.id
+  //   let purpose = req.body.purpose_id
+  //   let frequency = req.body.headers.product.frequency
+  //   let review = req.body.headers.product.review
+  //   let in_use = req.body.headers.product.in_use
+  //   let img_url = req.body.headers.product.img_url
+  //   let description = req.body.headers.product.description
+  //   let product_name = req.body.headers.product.product_name
+  //   console.log('LINE 69 ==============',review);
+    
+  //   const queryText = `UPDATE user_profile SET frequency=$1, review=$2, in_use=$3, img_url=$4, description=$5, 
+  //                      product_name=$6 WHERE id=$7`
+  //   console.log('line 73 profile router', id, frequency, review, in_use, description, product_name, user);
+
+  //   pool.query(queryText, [frequency, review, in_use, img_url, description, product_name, id])
+  //     .then((results) => { console.log('line 72', res.statusCode); res.sendStatus(201) })
+  //     .catch(error => {
+  //       console.log('Error in PUT profile router', error)
+  //     })
+  // });
+  router.put(`/`, (req, res) => {
+    console.log('hi hi hi router line 82');
+    console.log('line 83 ========== >', req.body.id);
+    if(req.body.status === 'in use'){
+        const queryText = `UPDATE user_profile SET in_use='not in use' WHERE id=$1;`
+        pool.query(queryText, [req.body.id])
+          .then((results) => { console.log('line 87', res.statusCode); res.sendStatus(201) })
+          .catch(error => {
+            console.log('Error in PUT profile router', error)
+       })
+    }else{
+
+        const queryText = `UPDATE user_profile SET in_use='in use' WHERE id=$1;`
+        pool.query(queryText, [req.body.id])
+          .then((results) => { console.log('line 87', res.statusCode); res.sendStatus(201) })
+          .catch(error => {
+            console.log('Error in PUT profile router', error)
+          })
+
+        }
       })
-  });
+  
+  
+    
+  
 //GET ROUTE for update product GETS based on id
   router.get('/solo/:id', (req, res) => {
     let user_id = req.params.id;

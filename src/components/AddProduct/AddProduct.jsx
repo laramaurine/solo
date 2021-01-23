@@ -28,7 +28,7 @@ class AddProduct extends Component {
    }
 
    componentDidUpdate(prevProps){
-       
+    
         if(this.props.store.updateReducer.frequency !== prevProps.frequency && this.state.newProduct.frequency === null){
             console.log('hiiiii i was called line 33 addProduct jsx');
             this.setState({newProduct: {
@@ -52,7 +52,9 @@ class AddProduct extends Component {
             [propertyName]: event.target.value,
            
         }
+        
     });
+    
 }
 handleDelete = (event, id) => {
     console.log('delete clicked', id)
@@ -61,21 +63,27 @@ handleDelete = (event, id) => {
 }
 
    addNewProduct = event => {
-       console.log('hi i am working addproduct jsx line 55', this.state.newProduct);
+       console.log('hi i am working addproduct jsx line 64', this.state.newProduct);
        event.preventDefault();
        if(this.state.editProduct){
-           this.props.dispatch({type: 'UPDATE_PRODUCT', payload: this.props.store.updateReducer.id})
+           this.props.dispatch({type: 'UPDATE_PRODUCT', payload: this.state.newProduct})
+           console.log('addProduct line 70', this.state.newProduct);
        }else{
            this.props.dispatch({type: 'ADD_PRODUCT', payload: {newProduct: this.state.newProduct, user_id: this.props.store.user.id}})
        }
-       
+       //THIS IS CURRENTLY FIRING BOTH AT THE SAME TIME 
        //this.props.dispatch({type: 'ADD_PRODUCT', payload: {newProduct: this.state.newProduct, user_id: this.props.store.user.id}}})
        //this.props.history.push('/')
     }
 
-   handleClick = () => {
-       console.log('cancel clicked');
-      this.state({ editProduct: false })
+//    handleClick = () => {
+//        console.log('cancel clicked');
+//       this.state({ editProduct: false })
+//    }
+   handleStatus = (event, id, status) => {
+       console.log('status clicked', id, status);
+       let newStatus = {id: id, status: status}
+       this.props.dispatch({type: 'UPDATE_STATUS', payload: newStatus})
    }
 
    handleEdit = (event, id) => {
@@ -83,6 +91,19 @@ handleDelete = (event, id) => {
     //this.props.history.push(`/edit/${id}`);
     this.setState({ editProduct: true })
     this.props.dispatch({ type: 'EDIT_PRODUCT_MONEY', payload: id})
+    this.setState({
+        // newProduct: this.props.updateReducer
+        newProduct: {
+            //user_id: this.props.updateReducer?.user_id,
+            frequency: this.props.updateReducer?.frequency,
+            review: this.props.updateReducer?.review,
+            in_use: this.props.updateReducer?.in_use,
+            img_url:this.props.updateReducer?.img_url,
+            description: this.props.updateReducer?.description,
+            product_name: this.props.updateReducer?.product_name,
+       },
+    })
+  
   }
     render(){
       
@@ -95,11 +116,11 @@ handleDelete = (event, id) => {
             <form onSubmit={this.addNewProduct}>
             <input required placeholder="Frequency of Use"  defaultValue={this.props.store.updateReducer.frequency} onChange={(event) => this.handleNewProduct (event, 'frequency')} />
             <input required placeholder="Product Review"  defaultValue={this.props.store.updateReducer.review} onChange={(event) =>this.handleNewProduct (event, 'review')} />
-            <input required placeholder="Currently Using? True or False"  defaultValue={this.props.store.updateReducer.in_use} onChange={(event) =>this.handleNewProduct (event, 'in_use')} />
+            <input required placeholder="In Use"  defaultValue={this.props.store.updateReducer.in_use} onChange={(event) =>this.handleNewProduct (event, 'in_use')} />
             <input placeholder="Image"  defaultValue={this.props.store.updateReducer.img_url} onChange={(event) => this.handleNewProduct (event, 'img_url')} />
             <input required placeholder="Description"  defaultValue={this.props.store.updateReducer.description} onChange={(event) =>this.handleNewProduct (event, 'description')} />
             <input required placeholder="Product Name"  defaultValue={this.props.store.updateReducer.product_name} onChange={(event) =>this.handleNewProduct (event, 'product_name')} />
-            <select value={this.state.product_id} onChange={(event) => this.handleNewProduct (event, 'product_id')}>
+            <select defaultValue={this.props.store.updateReducer.product_id} onChange={(event) => this.handleNewProduct (event, 'product_id')}>
                   <option value="">Purpose</option>
                   <option value="1">Serum</option>
                   <option value="2">Moisturizer</option>
@@ -112,7 +133,7 @@ handleDelete = (event, id) => {
               </select>
             <input className="submit" type='submit' value='Add New Product' />
             {/* <button onClick={(event) => this.handleEdit(event, this.props.store.user.id)}>Edit</button> */}
-            <button className="cancelButton" onClick={this.handleClick}>Cancel</button>
+            {/* <button className="cancelButton" onClick={this.handleClick}>Cancel</button> */}
             
         </form>
          {/* {JSON.stringify(this.props.store.profile)} */}
@@ -127,6 +148,13 @@ handleDelete = (event, id) => {
                 <div>{user_profile.product_name}</div>
                 <button onClick={(event) => this.handleEdit(event, user_profile.id)}>Edit</button>
                 <button onClick={(event) =>this.handleDelete(event, user_profile.id)}>Delete</button>
+                <button onClick={(event) =>this.handleStatus(event, user_profile.id, user_profile.in_use)}>In Use?</button>
+                {/* <br></br>
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></input>
+                <label for="vehicle1">In Use</label><br></br>
+                <input type="checkbox" id="vehicle2" name="vehicle1" value="Bike"></input>
+                <label for="vehicle1">Not In Use</label>
+                <br></br> */}
                 <div></div>
               {/* {JSON.stringify(this.props.reduxState.user_profile.id)} */}
              </div>

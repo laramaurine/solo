@@ -29,3 +29,14 @@ function* userSaga() {
 }
 
 export default userSaga;
+
+
+
+// try {
+//   const config = {
+//     headers: { 
+//       'Content-Type': 'application/json',
+//       'userid': action.payload,
+//      },
+//     withCredentials: true,
+//   };
