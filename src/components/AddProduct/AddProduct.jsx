@@ -3,7 +3,35 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 //import { withRouter } from "react-router";
+import { withStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
+const styles = theme => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit,
+      width: 200,
+    },
+    dense: {
+      marginTop: 19,
+    },
+    menu: {
+      width: 200,
+    },
+    button: {
+      margin: theme.spacing.unit,
+    },
+    input: {
+      display: 'none',
+    },
+  });
+  
 
 class AddProduct extends Component {
    state = {
@@ -116,7 +144,7 @@ handleDelete = (event, id) => {
             <form onSubmit={this.addNewProduct}>
             <input required placeholder="Frequency of Use"  defaultValue={this.props.store.updateReducer.frequency} onChange={(event) => this.handleNewProduct (event, 'frequency')} />
             <input required placeholder="Product Review"  defaultValue={this.props.store.updateReducer.review} onChange={(event) =>this.handleNewProduct (event, 'review')} />
-            <input required placeholder="In Use"  defaultValue={this.props.store.updateReducer.in_use} onChange={(event) =>this.handleNewProduct (event, 'in_use')} />
+            {/* <input required placeholder="In Use"  defaultValue={this.props.store.updateReducer.in_use} onChange={(event) =>this.handleNewProduct (event, 'in_use')} /> */}
             <input placeholder="Image"  defaultValue={this.props.store.updateReducer.img_url} onChange={(event) => this.handleNewProduct (event, 'img_url')} />
             <input required placeholder="Description"  defaultValue={this.props.store.updateReducer.description} onChange={(event) =>this.handleNewProduct (event, 'description')} />
             <input required placeholder="Product Name"  defaultValue={this.props.store.updateReducer.product_name} onChange={(event) =>this.handleNewProduct (event, 'product_name')} />

@@ -19,7 +19,7 @@ const Nav = (props) => {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">It puts the lotion on</h2>
+        <h2 className="nav-title">Skin Care App</h2>
       </Link>
       <div className="nav-right">
         <Link className="nav-link" to={loginLinkData.path}>
@@ -31,9 +31,9 @@ const Nav = (props) => {
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {props.store.user.id && (
           <>
-            <Link className="nav-link" to="/info">
+            {/* <Link className="nav-link" to="/info">
               All products
-            </Link>
+            </Link> */}
             <LogOutButton className="nav-link" />
           </>
         )}

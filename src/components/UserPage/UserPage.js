@@ -32,9 +32,7 @@ class UserPage extends Component {
     return (
       <div>
         <h1 id="welcome">Welcome, {this.props.store.user.username}!</h1>
-        <p>Your ID is: {this.props.store.user.id}</p>
-        <p>this is userPage...all things will display here map function currently in progress</p>
-        <p>along with edit and delete buttons products will toggleable between in use and not in use</p>
+        
         <div>
          {/* {JSON.stringify(this.props.store.profile)}
         {this.props.store.profile.map((user_profile) =>

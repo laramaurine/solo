@@ -8,10 +8,21 @@ import React from 'react';
 const AboutPage = () => (
   <div className="container">
     <div>
-      <h1>it puts the lotion on it's skin</h1>
+      <h1>Lara's Skincare Tracking App</h1>
         <h4>What is it?</h4>
       <p>This app is a skin care product tracking app</p>
-      <p>It will track how often you put lotion on your skin</p>
+      <p>It will track how often you use products and your review of the products</p>
+      <br></br>
+      <h4>Why did I make this app?</h4>
+      <p>About ten years ago, I sustained second and third degree burns on half of my face and struggled finding skin care products that were effective in</p>
+      <p>keeping my skin moisturized and feeling like normal skin.</p>
+      <p>Living in Minnesota, I know many of us have different skin care regimes for different seasons and this app will help track what products work.</p>
+    <br></br>
+    <h4>Technology Used</h4>
+    <p>React, PostgreSQL, Node</p>
+    <br></br>
+    <h4>Future Plans</h4>
+    <p>I plan to add a search function and to allow for multiple users</p>
     </div>
   </div>
 );
